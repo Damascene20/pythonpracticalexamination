@@ -3,48 +3,62 @@ body {
     background-color: #f4f4f9;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full screen height */
 }
 
 .chat-container {
-    width: 50%;
+    width: 100%;
+    max-width: 600px; /* Maximum width for larger screens */
     margin: 50px auto;
     background: #fff;
-    padding: 20px;
+    padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h1 {
     text-align: center;
     color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
 }
 
 form {
+    width: 100%;
     display: flex;
     flex-direction: column;
+    gap: 15px;
 }
 
 label {
     font-size: 16px;
-    margin-bottom: 10px;
+    color: #333;
 }
 
 input {
-    padding: 10px;
+    padding: 12px;
     margin-bottom: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
+    width: 100%; /* Make input field responsive */
 }
 
 button {
-    padding: 10px;
+    padding: 12px;
     background: #007bff;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    transition: background 0.3s ease;
 }
 
 button:hover {
@@ -53,7 +67,29 @@ button:hover {
 
 .response {
     margin-top: 20px;
-    padding: 10px;
+    padding: 15px;
     background: #f1f1f1;
     border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .chat-container {
+        padding: 20px;
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    input, button {
+        font-size: 14px;
+    }
+
+    .response {
+        font-size: 14px;
+    }
 }

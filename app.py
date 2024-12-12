@@ -1,12 +1,10 @@
 from flask import Flask, render_template, request
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-import spacy
-
+from textblob import Word
+import nltk
+nltk.download('wordnet')
 app = Flask(__name__)
-
-# Load NLP model
-nlp = spacy.load("en_core_web_sm")
 
 # Sample questions and answers
 faq = {
@@ -21,9 +19,11 @@ questions = list(faq.keys())
 answers = list(faq.values())
 
 def preprocess(text):
-    """Tokenize and clean text using spaCy."""
-    doc = nlp(text.lower())
-    return " ".join([token.lemma_ for token in doc if not token.is_stop and token.is_alpha])
+    """Tokenize and clean text using TextBlob."""
+    text = text.lower()  # Convert to lowercase
+    words = text.split()  # Split the text into words
+    lemmatized_words = [Word(word).lemmatize() for word in words if word.isalpha()]  # Lemmatize words
+    return " ".join(lemmatized_words)
 
 # Preprocess stored questions
 preprocessed_questions = [preprocess(q) for q in questions]
